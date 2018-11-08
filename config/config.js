@@ -2,7 +2,8 @@ export default {
     plugins: [
         ['umi-plugin-react', {
             // 打开antd插件，antd插件会帮你引入antd并实现按需编译
-            antd: true
+            antd: true,
+            dva: true,
         }]
     ],
     // umi配置 启用单数模式的目录，让 page 变为约定的文件夹
@@ -31,9 +32,23 @@ export default {
                 routes: [
                     { path: '/dashboard/analysis', component: 'Dashboard/Analysis' },
                     { path: '/dashboard/monitor', component: 'Dashboard/Monitor' },
-                    { path: '/dashboard/workplace', component: 'Dashboard/Workplace' }
+                    { path: '/dashboard/workplace', component: 'Dashboard/Workplace' },
+                    {
+                        path: '/dashboard/puzzlecards',
+                        component: 'Dashboard/puzzlecards'
+                    },
                 ]
+            },
+            {
+                path: 'list',
+                component: '../page/list',
             },
         ],
     }],
+    proxy: {
+        '/dev': {
+            target: 'https://08ad1pao69.execute-api.us-east-1.amazonaws.com',
+            changeOrigin: true,
+        }
+    }
 };
